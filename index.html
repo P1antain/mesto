@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+<header class="header">
+    <img src="./image/logo.svg" alt="MESTO.RUSSIA" class="header__logo">
+    <div class="header__line"></div>
+</header>
+
+<main class="content">
+    <section class="profil">
+        <img src="./image/jack.jpg" alt="Аватар" class="profil__avatar">
+        <div class="profil__info">
+            <h1 class="profil__name">Жак-Ив Кусто</h1>
+            <button class="profil__edit popup__opened" aria-label="Редактирование профиля"></button>
+            <p class="profil__profession">Исследователь океана</p>
+        </div>
+        <button class="profil__add" aria-label="Добавить изображения"></button>
+    </section>
+
+
+    <section class="elements">
+        <div class="element">
+            <img src="./image/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Карачаевск</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+        <div class="element">
+            <img src="./image/Elbrus.png" alt="Эльбрус" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Гора Эльбрус</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+        <div class="element">
+            <img src="./image/Dombai.png" alt="Домбай" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Домбай</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+        <div class="element">
+            <img src="./image/Elbrus_2.png" alt="Гора Эльбру" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Гора Эльбрус</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+        <div class="element">
+            <img src="./image/Dombai_2.png" alt="Домбай" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Домбай</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+        <div class="element">
+            <img src="./image/Karachaevo-cherkesia.png" alt="Карачаево-черкесия" class="element__image">
+            <div class="element__container">
+                <p class="element__name">Карачаево-черкесия</p>
+                <button class="element__like" aria-label="Поставить лайк"></button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="popup ">
+    <form class="popup__overlay">
+        <button class="popup__close" aria-label="Закрыть" type="reset"></button>
+        <h2 class="popup__edit">Редактировать профиль</h2>
+        <input class="popup__name" type="text" value="Жак-Ив Кусто">
+        <input class="popup__profession" type="text" value="Иследователь океана">
+        <button class="popup__save" aria-label="Сохранить">Сохранить</button>
+    </form>
+    
+</div>
+
+<footer class="footer">
+    <p class="footer__author">&copy; 2021 Mesto Russia</p>
+</footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
