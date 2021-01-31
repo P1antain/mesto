@@ -1,5 +1,5 @@
 .popup__overlay{
-    position: fixed;
+    position: relative;
     display: flex;
     flex-direction: column;
     max-width: 430px;

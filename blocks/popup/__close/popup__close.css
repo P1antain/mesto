@@ -5,7 +5,7 @@
     height: 40px;
     border: none;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     right: -33px;
     top: -34px;
 }
