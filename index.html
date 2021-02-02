@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+    <title>Место.РОССИЯ</title>
 </head>
 <body class="page">
 <header class="header">
-    <img src="./image/logo.svg" alt="MESTO.RUSSIA" class="header__logo">
-    <div class="header__line"></div>
+    <img src="./image/logo.svg" alt="МЕСТО.РОССИЯ" class="header__logo">
 </header>
 
 <main class="content">
@@ -28,42 +27,42 @@
         <div class="element">
             <img src="./image/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
             <div class="element__container">
-                <p class="element__name">Карачаевск</p>
+                <h3 class="element__name">Карачаевск</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
         <div class="element">
             <img src="./image/Elbrus.png" alt="Эльбрус" class="element__image">
             <div class="element__container">
-                <p class="element__name">Гора Эльбрус</p>
+                <h3 class="element__name">Гора Эльбрус</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
         <div class="element">
             <img src="./image/Dombai.png" alt="Домбай" class="element__image">
             <div class="element__container">
-                <p class="element__name">Домбай</p>
+                <h3 class="element__name">Домбай</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
         <div class="element">
             <img src="./image/Elbrus_2.png" alt="Гора Эльбру" class="element__image">
             <div class="element__container">
-                <p class="element__name">Гора Эльбрус</p>
+                <h3 class="element__name">Гора Эльбрус</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
         <div class="element">
             <img src="./image/Dombai_2.png" alt="Домбай" class="element__image">
             <div class="element__container">
-                <p class="element__name">Домбай</p>
+                <h3 class="element__name">Домбай</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
         <div class="element">
             <img src="./image/Karachaevo-cherkesia.png" alt="Карачаево-черкесия" class="element__image">
             <div class="element__container">
-                <p class="element__name">Карачаево-черкесия</p>
+                <h3 class="element__name">Карачаево-черкесия</h3>
                 <button class="element__like" aria-label="Поставить лайк"></button>
             </div>
         </div>
@@ -71,13 +70,15 @@
 </main>
 
 <div class="popup ">
-    <form class="popup__overlay">
-        <button class="popup__close" aria-label="Закрыть" type="reset"></button>
-        <h2 class="popup__edit">Редактировать профиль</h2>
-        <input class="popup__name" type="text" value="Жак-Ив Кусто">
-        <input class="popup__profession" type="text" value="Иследователь океана">
-        <button class="popup__save" aria-label="Сохранить">Сохранить</button>
-    </form>
+    <div class="popup__overlay">
+        <form class="popup__form" name="editProfil" action="">
+            <button class="popup__close" aria-label="Закрыть" type="reset"></button>
+            <h2 class="popup__edit">Редактировать профиль</h2>
+            <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто" name="editProfilName">
+            <input class="popup__input popup__input_profession" type="text" value="Иследователь океана" name='editProfilProfession'>
+            <button class="popup__save" >Сохранить</button>
+        </form>
+    </div>
     
 </div>
 

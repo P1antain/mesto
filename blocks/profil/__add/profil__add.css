@@ -1,5 +1,5 @@
 .profil__add{
-    background: url(../../../image/add_button.svg) center no-repeat;
+    background: url(../../../image/border_add1.png) center no-repeat;
     width: 150px;
     height: 50px;
     border: 2px solid #FFFFFF;
@@ -8,16 +8,16 @@
     border-radius: 2px;
     margin-left: auto;
     transition: 0.5s linear;
+    margin: 36px auto 0;
 }
 
 .profil__add:hover{
     opacity: 0.6;
 }
 
-@media screen and (min-width:320px) and (max-width: 425px){
+@media screen and (min-width:320px) and (max-width: 540px){
     .profil__add{
         width: 282px;
         margin: 0 auto;
     }
-
 }

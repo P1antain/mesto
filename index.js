@@ -3,21 +3,23 @@ const popup = document.querySelector('.popup');
 const popupOpen = document.querySelector('.profil__edit');
 const popupClose = document.querySelector('.popup__close');
 const popupSave = document.querySelector('.popup__save');
-const popupName = document.querySelector('.popup__name');
-const popupProfession = document.querySelector('.popup__profession');
+const popupName = document.querySelector('.popup__input_name');
+const popupProfession = document.querySelector('.popup__input_profession');
 // переменные для вз-вия с элементами Профиля
 const profilName = document.querySelector('.profil__name');
 const profilProfession = document.querySelector('.profil__profession');
 const profilInfo = document.querySelector('.profil__info');
 
 
-// Переменная для открытия закрытия окна
+// Переменная для открытия окна попапа
 const launchPopup = () =>{
-  popup.classList.toggle('popup__opened')
+  popup.classList.remove('popup_opened')
 }
+// Разделил функции. добавил обратку отменты отправки формы
 const closePopup = (event) => {
   if (event.target === event.currentTarget){
-    launchPopup()
+    popup.classList.add('popup_opened')
+    evt.preventDefault();
   }
 }
 // Собитие открытия и закрытия
@@ -41,7 +43,8 @@ launchPopup()
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
-// Добавление лайка v1.0
+// Добавление лайка v1.0 
+// С ващего разрешения пока оставлю, в дальнейшем удалю или доработаю, пока буду рассылку делать на оферы(вдруг возьмут).
 document.onclick = function(event){        
     if (event.target.className == 'element__like'){
         event.target.classList.add('element__like_active');
