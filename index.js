@@ -1,5 +1,6 @@
 // Обявляем константы для вз-вия с элементами Попапа
 const popup = document.querySelector('.popup');
+const popupOverlay = document.querySelector('.popup__overlay')
 const popupOpen = document.querySelector('.profil__edit');
 const popupClose = document.querySelector('.popup__close');
 const popupSave = document.querySelector('.popup__save');
@@ -13,19 +14,20 @@ const profilInfo = document.querySelector('.profil__info');
 
 // Переменная для открытия окна попапа
 const launchPopup = () =>{
-  popup.classList.remove('popup_opened')
+  popup.classList.add('popup_opened')
 }
 // Разделил функции. добавил обратку отменты отправки формы
 const closePopup = (event) => {
   if (event.target === event.currentTarget){
-    popup.classList.add('popup_opened')
+    popup.classList.remove('popup_opened');
     evt.preventDefault();
   }
 }
+
 // Собитие открытия и закрытия
 popupOpen.addEventListener('click', launchPopup)
-popupClose.addEventListener('click', launchPopup)
-popup.addEventListener('click', closePopup);
+popupClose.addEventListener('click', closePopup)
+popupOverlay.addEventListener('click', closePopup);
 
 // Логика отправки формы
 const formElement = document.querySelector('.popup__overlay')
@@ -37,7 +39,7 @@ function formSubmitHandler (evt) {
 // Меняем Имя и Профессию из формы 
 profilName.textContent = popupName.value;
 profilProfession.textContent = popupProfession.value;
-launchPopup()
+closePopup(popupClose, popupOverlay)
 }
 
 // Прикрепляем обработчик к форме:
