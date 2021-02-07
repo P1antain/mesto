@@ -8,11 +8,16 @@
     border-radius: 2px;
     margin-left: auto;
     transition: 0.5s linear;
-    margin: 36px auto 0;
 }
 
 .profil__add:hover{
     opacity: 0.6;
+}
+
+@media screen and (min-width:540px) and (max-width: 706px){
+    .profil__add{
+        margin: 36px auto 0;
+    }
 }
 
 @media screen and (min-width:320px) and (max-width: 540px){
