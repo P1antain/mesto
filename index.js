@@ -15,8 +15,8 @@ const profilInfo = document.querySelector('.profil__info');
 // Переменная для открытия окна попапа
 const launchPopup = () =>{
   popup.classList.add('popup_opened')
-  popupName.textContent = profilName.value;
-  popupProfession.textContent = profilProfession.value;
+  popupName.value = profilName.textContent;
+  popupProfession.value = profilProfession.textContent;
 }
 // Разделил функции. добавил обратку отменты отправки формы
 const closePopup = (event) => {
