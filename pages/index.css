@@ -25,11 +25,15 @@
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__delete/element__delete.css);
+
 /* POPUP */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__edit/popup__edit.css);
+@import url(../blocks/popup/__edit/_theme/popup__edit_theme-profil.css);
+@import url(../blocks/popup/__edit/_theme/popup__edit_theme-image.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/_opened/popup_opened.css);

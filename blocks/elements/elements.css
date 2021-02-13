@@ -3,18 +3,8 @@
     max-width: 880px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    grid-template-columns: repeat(auto-fit, 282px);
+    justify-content: center;
     gap: 17px;
 }
 
-@media screen and (min-width:620px) and (max-width: 900px){
-    .elements{
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (min-width:425px) and (max-width: 620px){
-    .elements{
-        grid-template-columns: 1fr;
-    }
-}

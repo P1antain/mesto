@@ -1,59 +1,168 @@
-// Обявляем константы для вз-вия с элементами Попапа
-const popup = document.querySelector('.popup');
-const popupOverlay = document.querySelector('.popup__overlay')
-const popupOpen = document.querySelector('.profil__edit');
-const popupClose = document.querySelector('.popup__close');
-const popupSave = document.querySelector('.popup__save');
-const popupName = document.querySelector('.popup__input_type_name');
-const popupProfession = document.querySelector('.popup__input_type_profession');
-// переменные для вз-вия с элементами Профиля
-const profilName = document.querySelector('.profil__name');
-const profilProfession = document.querySelector('.profil__profession');
-const profilInfo = document.querySelector('.profil__info');
+// Определяем Попапы
+const popupProfil = document.querySelector('.popup__with_profil');
+const popupImage = document.querySelector('.popup__with_image');
+const popupCard = document.querySelector('.popup__with_card');
+
+// Определяем область закрытия Попапов
+const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
+const popupCloseProfil = document.querySelector('.popup__close_profil');
+const popupOverlayImage = document.querySelector('.popup__overlay_image');
+const popupCloseImage = document.querySelector('.popup__close_image');
+
+// Переменные через которые открываются попапы
+const popupOpenProfil = document.querySelector('.profil__edit');
+const popupOpenImage = document.querySelector('.profil__add');
+
+// Переменные для вз-вия с Попапом Профиля
+const popupProfilName = document.querySelector('.popup__input_type_name');
+const popupProfilProfession = document.querySelector('.popup__input_type_profession');
+const profilName = document.querySelector('.profil__name')
+const profilProfession = document.querySelector('.profil__profession')
+
+// Перменные для вз-вия с Попапом Добавления Карточек
+const popupImageName = document.querySelector('.popup__input_type_image');
+const popupImageSrc = document.querySelector('.popup__input_type_src');
+
+// Переменные для вз-вия с Добавлением карточек
+const elementCard = document.querySelector('.elements');
+const elementTemplate = document.querySelector('.template')
+
+// Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
+const formElementProfil = document.querySelector('.popup__form_profil');
+const formElementImage = document.querySelector('.popup__form_image');
 
 
-// Переменная для открытия окна попапа
-const launchPopup = () =>{
-  popup.classList.add('popup_opened')
-  popupName.value = profilName.textContent;
-  popupProfession.value = profilProfession.textContent;
+// Открытие Попапа : 1)Профиля; 2)Добавления Карточки; 3)Картинки;
+const launchPopupProfil = () => {
+  popupProfil.classList.add('popup_opened');
+  popupProfilName.value = profilName.textContent;
+  popupProfilProfession.value = profilProfession.textContent;
+};
+
+const launchPopupImage = () => {
+  popupImage.classList.add('popup_opened');
+};
+
+const launchPopupCard = () => {
+  popupCard.classList.add('popup_opened');
+};
+
+// Закрытие Попапа: 1)Профиля; 2)Добавления Карточки; 3)Картинки;
+const closePopupProfil = (event) => {
+  if (event.target === event.currentTarget)
+  popupProfil.classList.remove('popup_opened');
+};
+
+const closePopupImage = (event) =>{
+  if (event.target === event.currentTarget)
+  popupImage.classList.remove('popup_opened');
 }
-// Разделил функции. добавил обратку отменты отправки формы
-const closePopup = (event) => {
-  if (event.target === event.currentTarget){
-    popup.classList.remove('popup_opened');
-    // event.preventDefault()
+
+
+// Открытие попапа
+popupOpenProfil.addEventListener('click', launchPopupProfil);
+popupOpenImage.addEventListener('click', launchPopupImage);
+imageElement.addEventListener('click', launchPopupCard);
+
+// Закрытие Попапа: 1) Профиля; 2)Добавления Карточки
+popupCloseProfil.addEventListener('click', closePopupProfil)
+popupOverlayProfil.addEventListener('click', closePopupProfil)
+popupCloseImage.addEventListener('click', closePopupImage);
+popupOverlayImage.addEventListener('click', closePopupImage);
+
+// Функция  редактирования Профиля
+function submitFormProfil (event){
+  event.preventDefault();
+  profilName.textContent = popupProfilName.value;
+  profilProfession.textContent = popupProfilProfession.value;
+  closePopupProfil(popupCloseProfil, popupOverlayProfil);
+}
+// Изменение профиля по кнопке
+formElementProfil.addEventListener('submit', submitFormProfil);
+
+// Карточки
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+// Добавление элементов Карточек
+function renderElement (){
+  const addElement = initialCards.map(getItem);
+  elementCard.append(...addElement);
+}
+
+// Получение Карточек
+function getItem(item){
+  const newItem = elementTemplate.content.cloneNode(true);
+
+  const headerElement = newItem.querySelector('.element__name');
+  headerElement.textContent = item.name;
+
+  const imageElement = newItem.querySelector('.element__image');
+  imageElement.src = item.link;
+  imageElement.alt = item.name;
+
+  const deleteElement = newItem.querySelector('.element__delete');
+  deleteElement.addEventListener('click', deletingElement);
+
+  const likeElement = newItem.querySelector('.element__like');
+  likeElement.addEventListener('click', likesElement)
+
+  return newItem;
+}
+
+// Удаление Карточек
+function deletingElement(event){
+  const targetElement = event.target;
+  const targetItem = targetElement.closest('.element');
+  targetItem.remove();
+}
+
+// Добавление на карточку :like:
+function likesElement(event){
+  const targetElement = event.target;
+  const targetItem = targetElement.closest('.element__like');
+  targetItem.classList.toggle('element__like_active');
+}
+
+// Функция добавления нового Элемента Картинки
+function submitFormImage(event){
+  event.preventDefault();
+  elementCard.prepend(getItem({name: popupImageName.value, link: popupImageSrc.value}));
+
+  popupImageName.value = '';
+  popupImageSrc.value = '';;
+  if(!popupImageSrc){
+    alert('добавьте изобаржение')
   }
 }
 
-// Собитие открытия и закрытия
-popupOpen.addEventListener('click', launchPopup)
-popupClose.addEventListener('click', closePopup)
-popupOverlay.addEventListener('click', closePopup);
+// Отправка формы картинки 
+formElementImage.addEventListener('submit', submitFormImage);
 
-// Логика отправки формы
-const formElement = document.querySelector('.popup__overlay')
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
 
-// Меняем Имя и Профессию из формы 
-profilName.textContent = popupName.value;
-profilProfession.textContent = popupProfession.value;
-closePopup(popupClose, popupOverlay)
-}
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler); 
-// Добавление лайка v1.0 
-// С ващего разрешения пока оставлю, в дальнейшем удалю или доработаю, пока буду рассылку делать на оферы(вдруг возьмут).
-// document.onclick = function(event){        
-//     if (event.target.className == 'element__like'){
-//         event.target.classList.add('element__like_active');
-//         }
-//         else{
-//           event.target.classList.remove('element__like_active');
-//         }
-// }
+renderElement ()
