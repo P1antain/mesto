@@ -1,7 +1,7 @@
 // Определяем Попапы
-const popupProfil = document.querySelector('.popup__add-profil');
-const popupImage = document.querySelector('.popup__add-image');
-const popupCard = document.querySelector('.popup__add-card');
+const popupProfil = document.querySelector('.popup_type_add-profil');
+const popupImage = document.querySelector('.popup_type_add-image');
+const popupCard = document.querySelector('.popup_type_add-card');
 
 // Определяем область закрытия Попапов
 const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
@@ -48,7 +48,8 @@ const launchPopupProfil = () => {
 
 const launchPopupImage = () => {
   popupImage.classList.add('popup_opened');
-
+  popupImageName.value = 'Назване';
+  popupImageSrc.value = 'Ссылка на картинку';
 };
 
 const launchPopupCard = (event) => {
