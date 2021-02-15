@@ -1,4 +1,5 @@
 // Определяем Попапы
+const popup = document.querySelector('.popup');
 const popupProfil = document.querySelector('.popup_type_add-profil');
 const popupImage = document.querySelector('.popup_type_add-image');
 const popupCard = document.querySelector('.popup_type_add-card');
@@ -8,19 +9,18 @@ const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
 const popupCloseProfil = document.querySelector('.popup__close_profil');
 const popupOverlayImage = document.querySelector('.popup__overlay_image');
 const popupCloseImage = document.querySelector('.popup__close_image');
-const popupOverlayCard = document.querySelector('.popup__overlay_card');
 const popupCloseCard = document.querySelector('.popup__close_card');
 
 // Переменные через которые открываются попапы
 const popupOpenProfil = document.querySelector('.profil__edit');
 const popupOpenImage = document.querySelector('.profil__add');
-const popupOpenCard = document.querySelector('.element__image')
+const popupOpenCard = document.querySelector('.element__image');
 
 // Переменные для вз-вия с Попапом Профиля
 const popupProfilName = document.querySelector('.popup__input_type_name');
 const popupProfilProfession = document.querySelector('.popup__input_type_profession');
-const profilName = document.querySelector('.profil__name')
-const profilProfession = document.querySelector('.profil__profession')
+const profilName = document.querySelector('.profil__name');
+const profilProfession = document.querySelector('.profil__profession');
 
 // Перменные для вз-вия с Попапом Добавления Карточек
 const popupImageName = document.querySelector('.popup__input_type_image');
@@ -28,7 +28,7 @@ const popupImageSrc = document.querySelector('.popup__input_type_src');
 
 // Переменные для вз-вия с Добавлением карточек
 const elementCard = document.querySelector('.elements');
-const elementTemplate = document.querySelector('.template')
+const elementTemplate = document.querySelector('.template');
 
 // Переменные для вз-вия с Попапом Карточек 
 const popupCardImg = document.querySelector('.popup__image');
@@ -38,22 +38,27 @@ const popupCardName = document.querySelector('.popup__name');
 const formElementProfil = document.querySelector('.popup__form_profil');
 const formElementImage = document.querySelector('.popup__form_image');
 
+// Открытие Попапа :1)Попапа 2)Профиля; 3)Добавления Карточки; 4)Картинки;
+const openPopup = (popup) =>{
+  popup.classList.add('popup_opened');
+}
 
-// Открытие Попапа : 1)Профиля; 2)Добавления Карточки; 3)Картинки;
 const launchPopupProfil = () => {
-  popupProfil.classList.add('popup_opened');
+  // popupProfil.classList.add('popup_opened');
   popupProfilName.value = profilName.textContent;
   popupProfilProfession.value = profilProfession.textContent;
+  openPopup(popupProfil);
 };
 
 const launchPopupImage = () => {
-  popupImage.classList.add('popup_opened');
-  popupImageName.value = 'Назване';
-  popupImageSrc.value = 'Ссылка на картинку';
+  // popupImage.classList.add('popup_opened');
+  popupImageName.value = '';
+  popupImageSrc.value = '';
+  openPopup(popupImage);
 };
 
 const launchPopupCard = (event) => {
-  popupCard.classList.add('popup_opened');
+  // popupCard.classList.add('popup_opened');
   const targetElement = event.target;
   const targetItem = targetElement.closest('.element__image');
   const targetTitle = targetElement.nextElementSibling;
@@ -63,23 +68,28 @@ const launchPopupCard = (event) => {
   popupCardImg.alt = targetItem.alt;
 
   popupCardName.textContent = targetTitle.textContent;
+  openPopup(popupCard)
 };
 
 // Закрытие Попапа: 1)Профиля; 2)Добавления Карточки; 3)Картинки;
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+};
+
 const closePopupProfil = (event) => {
   if (event.target === event.currentTarget)
-  popupProfil.classList.remove('popup_opened');
+  closePopup(popupProfil);
+  
 };
 
 const closePopupImage = (event) =>{
   if (event.target === event.currentTarget)
-  popupImage.classList.remove('popup_opened');
+  closePopup(popupImage);
 }
 
 const closePopupCard = (event) =>{
   if (event.target === event.currentTarget)
-  popupCard.classList.remove('popup_opened');
-
+  closePopup(popupCard);
 }
 
 // Открытие Попапа: 1)Профиля; 2) Добавления карточки
@@ -148,14 +158,13 @@ function getItem(item){
   imageElement.src = item.link;
   imageElement.alt = item.name;
   imageElement.addEventListener('click', launchPopupCard);
-  // popupOverlayCard.addEventListener('click', closePopupCard)
-  popupCloseCard.addEventListener('click', closePopupCard)
+  popupCloseCard.addEventListener('click', closePopupCard);
 
   const deleteElement = newItem.querySelector('.element__delete');
   deleteElement.addEventListener('click', deletingElement);
 
   const likeElement = newItem.querySelector('.element__like');
-  likeElement.addEventListener('click', likesElement)
+  likeElement.addEventListener('click', likesElement);
 
   return newItem;
 }

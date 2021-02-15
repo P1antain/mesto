@@ -38,33 +38,33 @@
 
 <div class="popup popup_type_add-profil">
     <div class="popup__overlay popup__overlay_profil">
-        <form class="popup__form popup__form_profil" name="editProfil" action="">
+        <form class="popup__form popup__form_profil" name="editProfil" action="" required>
             <button class="popup__close popup__close_profil" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-profil">Редактировать профиль</h3>
-            <input class="popup__input popup__input_type_name" type="text" value="Жак-Ив Кусто" name="editProfilName">
-            <input class="popup__input popup__input_type_profession" type="text" value="Иследователь океана" name='editProfilProfession'>
+            <input class="popup__input popup__input_type_name" type="text" value="" name="editProfilName">
+            <input class="popup__input popup__input_type_profession" type="text" value="" name='editProfilProfession'>
             <button class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
 </div>
 <div class="popup popup_type_add-image">
     <div class="popup__overlay popup__overlay_image">
-        <form class="popup__form popup__form_image" name="editImage" action="">
+        <form class="popup__form popup__form_image" name="editImage" action="" required>
             <button class="popup__close popup__close_image" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-image">Новое место</h3>
-            <input class="popup__input popup__input_type_image" type="text" value="Название" name="editImageName">
-            <input class="popup__input popup__input_type_src" type="text" value="Ссылка на картинку" name='editImageSrc'>
+            <input class="popup__input popup__input_type_image" type="text" placeholder="Название" value="" name="editImageName">
+            <input class="popup__input popup__input_type_src" type="text" placeholder="Ссылка на картинку" value="" name='editImageSrc'>
             <button class="popup__save" type="submit">Создать</button>
         </form>
     </div>
 </div>
 <div class="popup popup_type_add-card">
     <div class="popup__overlay popup__overlay_card">
-        <form class="popup__form-card" name="editCard" action="">
+        <div class="popup__form-card">
             <button class="popup__close popup__close_card" aria-label="Закрыть" type="reset"></button>
             <img src="#" alt="#" class="popup__image">
             <h3 class="popup__name"></h3>
-        </form>
+        </div>
     </div>
 </div>
 
