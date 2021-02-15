@@ -8,10 +8,13 @@ const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
 const popupCloseProfil = document.querySelector('.popup__close_profil');
 const popupOverlayImage = document.querySelector('.popup__overlay_image');
 const popupCloseImage = document.querySelector('.popup__close_image');
+const popupOverlayCard = document.querySelector('.popup__overlay_card');
+const popupCloseCard = document.querySelector('.popup__close_card');
 
 // Переменные через которые открываются попапы
 const popupOpenProfil = document.querySelector('.profil__edit');
 const popupOpenImage = document.querySelector('.profil__add');
+const popupOpenCard = document.querySelector('.element__image')
 
 // Переменные для вз-вия с Попапом Профиля
 const popupProfilName = document.querySelector('.popup__input_type_name');
@@ -27,6 +30,10 @@ const popupImageSrc = document.querySelector('.popup__input_type_src');
 const elementCard = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.template')
 
+// Переменные для вз-вия с Попапом Карточек 
+const popupCardImg = document.querySelector('.popup__image');
+const popupCardName = document.querySelector('.popup__name');
+
 // Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
 const formElementProfil = document.querySelector('.popup__form_profil');
 const formElementImage = document.querySelector('.popup__form_image');
@@ -41,10 +48,20 @@ const launchPopupProfil = () => {
 
 const launchPopupImage = () => {
   popupImage.classList.add('popup_opened');
+
 };
 
-const launchPopupCard = () => {
+const launchPopupCard = (event) => {
   popupCard.classList.add('popup_opened');
+  const targetElement = event.target;
+  const targetItem = targetElement.closest('.element__image');
+  const targetTitle = targetElement.nextElementSibling;
+
+  popupCardImg.src = targetItem.src;
+
+  popupCardImg.alt = targetItem.alt;
+
+  popupCardName.textContent = targetTitle.textContent;
 };
 
 // Закрытие Попапа: 1)Профиля; 2)Добавления Карточки; 3)Картинки;
@@ -58,11 +75,16 @@ const closePopupImage = (event) =>{
   popupImage.classList.remove('popup_opened');
 }
 
+const closePopupCard = (event) =>{
+  if (event.target === event.currentTarget)
+  popupCard.classList.remove('popup_opened');
 
-// Открытие попапа
+}
+
+// Открытие Попапа: 1)Профиля; 2) Добавления карточки
 popupOpenProfil.addEventListener('click', launchPopupProfil);
 popupOpenImage.addEventListener('click', launchPopupImage);
-imageElement.addEventListener('click', launchPopupCard);
+
 
 // Закрытие Попапа: 1) Профиля; 2)Добавления Карточки
 popupCloseProfil.addEventListener('click', closePopupProfil)
@@ -124,6 +146,9 @@ function getItem(item){
   const imageElement = newItem.querySelector('.element__image');
   imageElement.src = item.link;
   imageElement.alt = item.name;
+  imageElement.addEventListener('click', launchPopupCard);
+  // popupOverlayCard.addEventListener('click', closePopupCard)
+  popupCloseCard.addEventListener('click', closePopupCard)
 
   const deleteElement = newItem.querySelector('.element__delete');
   deleteElement.addEventListener('click', deletingElement);
@@ -154,10 +179,8 @@ function submitFormImage(event){
   elementCard.prepend(getItem({name: popupImageName.value, link: popupImageSrc.value}));
 
   popupImageName.value = '';
-  popupImageSrc.value = '';;
-  if(!popupImageSrc){
-    alert('добавьте изобаржение')
-  }
+  popupImageSrc.value = '';
+  closePopupImage(popupCloseImage);
 }
 
 // Отправка формы картинки 

@@ -11,5 +11,6 @@ __Используемые технологии__
 1. Html (Деление на блоки Header/Main/Footer)
 2. Css (Flex/Grid/Позиционирование)
 3. JavaScript (Add/remove classlist/ Popup)
+4. Использование template элементов, добавление и вз-вие с ними. 
 ____
 ### ссылка на проект : __https://p1antain.github.io/mesto/index.html__
