@@ -1,7 +1,7 @@
 // Определяем Попапы
-const popupProfil = document.querySelector('.popup__with_profil');
-const popupImage = document.querySelector('.popup__with_image');
-const popupCard = document.querySelector('.popup__with_card');
+const popupProfil = document.querySelector('.popup__with-profil');
+const popupImage = document.querySelector('.popup__with-image');
+const popupCard = document.querySelector('.popup__with-card');
 
 // Определяем область закрытия Попапов
 const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
