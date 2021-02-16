@@ -38,22 +38,22 @@
 
 <div class="popup popup_type_add-profil">
     <div class="popup__overlay popup__overlay_profil">
-        <form class="popup__form popup__form_profil" name="editProfil" action="" required>
+        <form class="popup__form popup__form_profil" name="editProfil" action="" >
             <button class="popup__close popup__close_profil" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-profil">Редактировать профиль</h3>
-            <input class="popup__input popup__input_type_name" type="text" value="" name="editProfilName">
-            <input class="popup__input popup__input_type_profession" type="text" value="" name='editProfilProfession'>
+            <input class="popup__input popup__input_type_name" type="text" value="" placeholder="Ваше имя" name="editProfilName" required>
+            <input class="popup__input popup__input_type_profession" type="text" value="" placeholder="Род вашей деятельности" name='editProfilProfession' required>
             <button class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
 </div>
 <div class="popup popup_type_add-image">
     <div class="popup__overlay popup__overlay_image">
-        <form class="popup__form popup__form_image" name="editImage" action="" required>
+        <form class="popup__form popup__form_image" name="editImage" action="" >
             <button class="popup__close popup__close_image" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-image">Новое место</h3>
-            <input class="popup__input popup__input_type_image" type="text" placeholder="Название" value="" name="editImageName">
-            <input class="popup__input popup__input_type_src" type="text" placeholder="Ссылка на картинку" value="" name='editImageSrc'>
+            <input class="popup__input popup__input_type_image" type="text" placeholder="Название" value="" name="editImageName" required>
+            <input class="popup__input popup__input_type_src" type="text" placeholder="Ссылка на картинку" value="" name='editImageSrc' required>
             <button class="popup__save" type="submit">Создать</button>
         </form>
     </div>

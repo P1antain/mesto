@@ -79,7 +79,6 @@ const closePopup = (popup) => {
 const closePopupProfil = (event) => {
   if (event.target === event.currentTarget)
   closePopup(popupProfil);
-  
 };
 
 const closePopupImage = (event) =>{
