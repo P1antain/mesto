@@ -42,6 +42,7 @@ const formElementImage = document.querySelector('.popup__form_image');
 // Открытие Попапа :1)Попапа 2)Профиля; 3)Добавления Карточки; 4)Картинки;
 const openPopup = (popup) =>{
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEscape); 
 }
 
 const launchPopupProfil = () => {
@@ -75,15 +76,16 @@ const launchPopupCard = (event) => {
 // Закрытие Попапа: 1)Профиля; 2)Добавления Карточки; 3)Картинки;
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape); 
+  
 };
 // Функция для закртыия по Escape
-function closePopupEscape(event){
-  if (event.key === 'Escape'){
-    closePopup(popupProfil) || closePopup(popupImage) || closePopup(popupCard);
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
   }
-} 
-
-document.addEventListener('keydown', closePopupEscape)
+}
 
 const closePopupProfil = (event) => {
   if (event.target === event.currentTarget)
