@@ -75,6 +75,14 @@ const launchPopupCard = (event) => {
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 };
+// Функция для закртыия по Escape
+function closePopupEscape(event){
+  if (event.key === 'Escape'){
+    closePopup(popupProfil) || closePopup(popupImage) || closePopup(popupCard);
+  }
+} 
+
+document.addEventListener('keydown', closePopupEscape)
 
 const closePopupProfil = (event) => {
   if (event.target === event.currentTarget)

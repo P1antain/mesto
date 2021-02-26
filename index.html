@@ -38,22 +38,34 @@
 
 <div class="popup popup_type_add-profil">
     <div class="popup__overlay popup__overlay_profil">
-        <form class="popup__form popup__form_profil" name="editProfil" action="" >
+        <form class="popup__form popup__form_profil" name="editProfil" action="" novalidate>
             <button class="popup__close popup__close_profil" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-profil">Редактировать профиль</h3>
-            <input class="popup__input popup__input_type_name" type="text" value="" placeholder="Ваше имя" name="editProfilName" required>
-            <input class="popup__input popup__input_type_profession" type="text" value="" placeholder="Род вашей деятельности" name='editProfilProfession' required>
+            <section class="popup__section">
+                <input class="popup__input popup__input_type_name" type="text" value="" placeholder="Ваше имя" name="editProfilName" minlength="2" maxlength="40" required>
+                <span class="popup__input-error" id="popup__input-error"></span>
+             </section>
+            <section class="popup__section">
+                <input class="popup__input popup__input_type_profession" type="text" value="" placeholder="Род вашей деятельности" name="editProfilProfession" minlength="2" maxlength="200" required>
+                <span class="popup__input-error" id="popup__input-error"></span>
+            </section>
             <button class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
 </div>
 <div class="popup popup_type_add-image">
     <div class="popup__overlay popup__overlay_image">
-        <form class="popup__form popup__form_image" name="editImage" action="" >
+        <form class="popup__form popup__form_image" name="editImage" action="" novalidate>
             <button class="popup__close popup__close_image" aria-label="Закрыть" type="reset"></button>
             <h3 class="popup__edit popup__edit_theme-image">Новое место</h3>
-            <input class="popup__input popup__input_type_image" type="text" placeholder="Название" value="" name="editImageName" required>
-            <input class="popup__input popup__input_type_src" type="text" placeholder="Ссылка на картинку" value="" name='editImageSrc' required>
+            <section class="popup__section">
+                <input class="popup__input popup__input_type_image" type="text" placeholder="Название" value="" name="editImageName" minlength="2" maxlength="30"  required>
+                <span class="popup__input-error" id="popup__input-error"></span>
+            </section>
+            <section class="popup__section">
+                <input class="popup__input popup__input_type_src" type="url" placeholder="Ссылка на картинку" value="" name='editImageSrc' required>
+                <span class="popup__input-error" id="popup__input-error"></span>
+            </section>
             <button class="popup__save" type="submit">Создать</button>
         </form>
     </div>
@@ -72,6 +84,8 @@
     <p class="footer__author">&copy; 2021 Mesto Russia</p>
 </footer>
 <!-- <div></div> -->
-    <script src="index.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
+
 </body>
 </html>
