@@ -18,11 +18,19 @@ const hideInputError = (inputElement) =>{
     errorElement.classList.remove('popup__input-error_active')
 };
 
+const getErrorMessage = (inputElement) => {
+    if(inputElement.validity.typeMismatch){
+        return 'Введите адрес сайта.'
+    }else {
+        return 'Вы пропустили это поле.'
+    }
+}
+
 const checkInputValidity = (formElement, inputElement) => {
     const isInputNotValid = !inputElement.validity.valid;
 
     if(isInputNotValid) {
-        const errorMessage = inputElement.validationMessage;
+        const errorMessage = getErrorMessage(inputElement);
 
         showInputError(inputElement, errorMessage);
     } else {
@@ -43,12 +51,12 @@ const toggleButtonState = (inputList, buttonElement) => {
     }
 };
 
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, inputSelector) => {
     formElement.addEventListener('submit', (event) => {
         event.preventDefault();
     });
 
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
     const buttonElement = formElement.querySelector('.popup__save')
 
     inputList.forEach((inputElement) => {
@@ -60,11 +68,20 @@ const setEventListeners = (formElement) => {
     toggleButtonState(inputList, buttonElement);
 };
 
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = ({formSelector, inputSelector}) => {
+    const formList = Array.from(document.querySelectorAll(formSelector));
 
-    formList.forEach(setEventListeners);
+    formList.forEach((formElement) => {
+        setEventListeners(formElement, inputSelector)
+    });
     
 };
 
-enableValidation();
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__save_disable',
+    inputErrorClass: 'popup__input-error',
+    errorClass: 'popup__input-error_active'
+  }); 

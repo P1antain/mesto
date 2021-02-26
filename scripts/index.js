@@ -10,6 +10,7 @@ const popupCloseProfil = document.querySelector('.popup__close_profil');
 const popupOverlayImage = document.querySelector('.popup__overlay_image');
 const popupCloseImage = document.querySelector('.popup__close_image');
 const popupCloseCard = document.querySelector('.popup__close_card');
+const popupOverlayCard = document.querySelector('.popup__overlay_card');
 
 // Переменные через которые открываются попапы
 const popupOpenProfil = document.querySelector('.profil__edit');
@@ -166,6 +167,7 @@ function getItem(item){
   imageElement.alt = item.name;
   imageElement.addEventListener('click', launchPopupCard);
   popupCloseCard.addEventListener('click', closePopupCard);
+  popupOverlayCard.addEventListener('click', closePopupCard);
 
   const deleteElement = newItem.querySelector('.element__delete');
   deleteElement.addEventListener('click', deletingElement);
@@ -197,7 +199,7 @@ function submitFormImage(event){
 
   popupImageName.value = '';
   popupImageSrc.value = '';
-  closePopupImage(popupCloseImage);
+  closePopupImage(popupCloseImage, popupOverlayCard);
 }
 
 // Отправка формы картинки 
