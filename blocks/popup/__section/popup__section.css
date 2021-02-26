@@ -1,4 +1,5 @@
 .popup__section{
+    position: relative;
     max-width: 356px;
     display: flex;
     flex-direction: column;
