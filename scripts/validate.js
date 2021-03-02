@@ -60,7 +60,7 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, ina
     const buttonElement = formElement.querySelector(submitButtonSelector)
 
     inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', (event) => {
+        inputElement.addEventListener('input', () => {
             checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
             toggleButtonState(inputList, buttonElement, inactiveButtonClass);
         });
