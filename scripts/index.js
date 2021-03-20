@@ -1,8 +1,12 @@
+import {Card} from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
+
+
 // Определяем Попапы
 const popup = document.querySelector('.popup');
 const popupProfil = document.querySelector('.popup_type_add-profil');
 const popupImage = document.querySelector('.popup_type_add-image');
-const popupCard = document.querySelector('.popup_type_add-card');
+export const popupCard = document.querySelector('.popup_type_add-card');
 
 // Определяем область закрытия Попапов
 const popupOverlayProfil = document.querySelector('.popup__overlay_profil');
@@ -32,15 +36,15 @@ const elementCard = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.template');
 
 // Переменные для вз-вия с Попапом Карточек 
-const popupCardImg = document.querySelector('.popup__image');
-const popupCardName = document.querySelector('.popup__name');
+export const popupCardImg = document.querySelector('.popup__image');
+export const popupCardName = document.querySelector('.popup__name');
 
 // Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
 const formElementProfil = document.querySelector('.popup__form_profil');
 const formElementImage = document.querySelector('.popup__form_image');
 
 // Открытие Попапа :1)Попапа 2)Профиля; 3)Добавления Карточки; 4)Картинки;
-const openPopup = (popup) =>{
+export const openPopup = (popup) =>{
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape); 
 }
@@ -59,7 +63,7 @@ const launchPopupImage = () => {
   openPopup(popupImage);
 };
 
-const launchPopupCard = (event) => {
+export const launchPopupCard = (event) => {
   // popupCard.classList.add('popup_opened');
   const targetElement = event.target;
   const targetItem = targetElement.closest('.element__image');
@@ -151,62 +155,42 @@ const initialCards = [
   }
 ]; 
 
-// Добавление элементов Карточек
-function renderElement (){
-  const addElement = initialCards.map(getItem);
-  elementCard.append(...addElement);
-}
 
-// Получение Карточек
-function getItem(item){
-  const newItem = elementTemplate.content.cloneNode(true);
-
-  const headerElement = newItem.querySelector('.element__name');
-  headerElement.textContent = item.name;
-
-  const imageElement = newItem.querySelector('.element__image');
-  imageElement.src = item.link;
-  imageElement.alt = item.name;
-  imageElement.addEventListener('click', launchPopupCard);
-  popupCloseCard.addEventListener('click', closePopupCard);
-  popupOverlayCard.addEventListener('click', closePopupCard);
-
-  const deleteElement = newItem.querySelector('.element__delete');
-  deleteElement.addEventListener('click', deletingElement);
-
-  const likeElement = newItem.querySelector('.element__like');
-  likeElement.addEventListener('click', likesElement);
-
-  return newItem;
-}
-
-// Удаление Карточек
-function deletingElement(event){
-  const targetElement = event.target;
-  const targetItem = targetElement.closest('.element');
-  targetItem.remove();
-}
-
-// Добавление на карточку :like:
-function likesElement(event){
-  const targetElement = event.target;
-  const targetItem = targetElement.closest('.element__like');
-  targetItem.classList.toggle('element__like_active');
-}
-
-// Функция добавления нового Элемента Картинки
+// // Функция добавления нового Элемента Карточек
 function submitFormImage(event){
   event.preventDefault();
-  elementCard.prepend(getItem({name: popupImageName.value, link: popupImageSrc.value}));
-
+  const card = new Card({name: popupImageName.value, link: popupImageSrc.value});
+  const cardElement = card.generateCard();
+  elementCard.prepend(cardElement);
   popupImageName.value = '';
   popupImageSrc.value = '';
   closePopupImage(popupCloseImage, popupOverlayCard);
 }
 
-// Отправка формы картинки 
+// Отправка формы картинки
 formElementImage.addEventListener('submit', submitFormImage);
 
+//Добавляем все карточки на экран
+initialCards.forEach((item) => {
+  const card = new Card(item, elementTemplate);
+  const cardElement = card.generateCard();
+  elementCard.prepend(cardElement);
+  popupCloseCard.addEventListener('click', closePopupCard);
+  popupOverlayCard.addEventListener('click', closePopupCard);
+})
 
+const className = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__save_disable',
+  inputErrorClass: '.popup__input-error',
+  errorClass: 'popup__input-error_active'
+};
 
-renderElement ()
+//Добавляем класс для проверки валидации полей
+const profileFormValidity = new FormValidator(className, formElementProfil);
+const cardFormValidity = new FormValidator(className, formElementImage);
+//Запускаем так или через фукнции
+cardFormValidity.enableValidation()
+profileFormValidity.enableValidation()
