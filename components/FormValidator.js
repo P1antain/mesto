@@ -1,17 +1,18 @@
  export class FormValidator {
      constructor(config, formElement) {
          this._formElement = formElement;
-         this._formSelector = config.formSelector;
+         // this._formSelector = config.formSelector;
          this._inputSelector = config.inputSelector;
          this._submitButtonSelector = config.submitButtonSelector;
          this._inactiveButtonClass = config.inactiveButtonClass;
          this._inputErrorClass = config.inputErrorClass;
          this._errorClass = config.errorClass;
+         this._popupSection = '.popup__section';
      }
 
      _showInputError(inputElement, errorMessage) {
           this._errorElement = inputElement
-             .closest('.popup__section')
+             .closest(this._popupSection)
              .querySelector(this._inputErrorClass);
          this._errorElement.textContent = errorMessage;
          this._errorElement.classList.add(this._errorClass)
@@ -19,7 +20,7 @@
 
      _hideInputError(inputElement) {
           this._errorElement = inputElement
-             .closest('.popup__section')
+             .closest(this._popupSection)
              .querySelector(this._inputErrorClass);
          this._errorElement.textContent = '';
          this._errorElement.classList.remove(this._errorClass)
