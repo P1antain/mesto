@@ -146,7 +146,8 @@ const className = {
   submitButtonSelector: '.popup__save',
   inactiveButtonClass: 'popup__save_disable',
   inputErrorClass: '.popup__input-error',
-  errorClass: 'popup__input-error_active'
+  errorClass: 'popup__input-error_active',
+  popupSection: '.popup__section'
 };
 
 //Добавляем класс для проверки валидации полей

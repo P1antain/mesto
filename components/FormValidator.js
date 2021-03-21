@@ -7,7 +7,7 @@
          this._inactiveButtonClass = config.inactiveButtonClass;
          this._inputErrorClass = config.inputErrorClass;
          this._errorClass = config.errorClass;
-         this._popupSection = '.popup__section';
+         this._popupSection = config.popupSection;
      }
 
      _showInputError(inputElement, errorMessage) {
