@@ -1,6 +1,7 @@
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {initialCards} from "../components/initial-cards.js";
+import {initialCards} from "../utils/initial-cards.js";
+import {className} from "../utils/className.js";
 
 
 // Определяем Попапы
@@ -139,16 +140,6 @@ initialCards.forEach((item) => {
   elementCard.prepend(cardElement);
 
 });
-
-const className = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_disable',
-  inputErrorClass: '.popup__input-error',
-  errorClass: 'popup__input-error_active',
-  popupSection: '.popup__section'
-};
 
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfil);
