@@ -93,24 +93,26 @@ popups.forEach((popup) =>{
 // Открытие Попапа: 1)Профиля; 2) Добавления карточки
 popupOpenProfil.addEventListener('click', launchPopupProfile);
 popupOpenImage.addEventListener('click', launchPopupImage);
+// Функция генерации карточек
+function createCard(item) {
+  const card = new Card(item, '.template', openPicture);
+  const cardElement = card.generateCard();
+  elementCard.prepend(cardElement);
+}
 // // Функция добавления нового Элемента Карточек
 function submitFormImage(event){
   event.preventDefault();
-  const card = new Card({name: popupImageName.value, link: popupImageSrc.value},'.template', openPicture);
-  const cardElement = card.generateCard();
-  elementCard.prepend(cardElement);
+  createCard({name: popupImageName.value, link: popupImageSrc.value});
   popupImageName.value = '';
   popupImageSrc.value = '';
   formElementImage.reset()
   closePopup(popupImage)
 }
-// Отправка формы картинки
+// Отправка формы Элемента Карточек
 formElementImage.addEventListener('submit', submitFormImage);
 //Добавляем все карточки на экран
 initialCards.forEach((item) => {
-  const card = new Card(item, '.template', openPicture);
-  const cardElement = card.generateCard();
-  elementCard.prepend(cardElement);
+  createCard(item)
 });
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfile);
