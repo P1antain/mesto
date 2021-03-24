@@ -84,11 +84,9 @@ popups.forEach((popup) =>{
   popup.addEventListener('click', (event)=> {
     if(event.target.classList.contains('popup__overlay')){
       closePopup(popup)
-      closePopup(popupProfile);
     }
     if(event.target.classList.contains('popup__close')){
       closePopup(popup)
-      closePopup(popupProfile);
     }
   })
 })
