@@ -2,7 +2,7 @@ import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {initialCards} from "../utils/initial-cards.js";
 import {className} from "../utils/className.js";
-
+import {Section} from "../components/Section.js";
 
 // Определяем Попапы
 const popups = document.querySelectorAll('.popup');
@@ -11,14 +11,14 @@ const popupImage = document.querySelector('.popup_type_add-image');
 const popupCard = document.querySelector('.popup_type_add-card');
 
 // Переменные через которые открываются попапы
-const popupOpenProfil = document.querySelector('.profil__edit');
+const popupOpenProfile = document.querySelector('.profil__edit');
 const popupOpenImage = document.querySelector('.profil__add');
 
 // Переменные для вз-вия с Попапом Профиля
 const popupProfileName = document.querySelector('.popup__input_type_name');
-const popupProfilProfession = document.querySelector('.popup__input_type_profession');
-const profilName = document.querySelector('.profil__name');
-const profilProfession = document.querySelector('.profil__profession');
+const popupProfileProfession = document.querySelector('.popup__input_type_profession');
+const profileName = document.querySelector('.profil__name');
+const profileProfession = document.querySelector('.profil__profession');
 
 // Перменные для вз-вия с Попапом Добавления Карточек
 const popupImageName = document.querySelector('.popup__input_type_image');
@@ -42,15 +42,15 @@ const openPopup = (element) =>{
 }
 //Открытия попапа Форма
 const launchPopupProfile = () => {
-  popupProfileName.value = profilName.textContent;
-  popupProfilProfession.value = profilProfession.textContent;
+  popupProfileName.value = profileName.textContent;
+  popupProfileProfession.value = profileProfession.textContent;
   openPopup(popupProfile);
 };
 // Функция  редактирования попапа Профиля
 function submitFormProfile (event){
   event.preventDefault()
-  profilName.textContent = popupProfileName.value;
-  profilProfession.textContent = popupProfilProfession.value;
+  profileName.textContent = popupProfileName.value;
+  profileProfession.textContent = popupProfileProfession.value;
   closePopup(popupProfile);
 }
 // Изменение профиля по кнопке
@@ -91,7 +91,7 @@ popups.forEach((popup) =>{
   })
 })
 // Открытие Попапа: 1)Профиля; 2) Добавления карточки
-popupOpenProfil.addEventListener('click', launchPopupProfile);
+popupOpenProfile.addEventListener('click', launchPopupProfile);
 popupOpenImage.addEventListener('click', launchPopupImage);
 // Функция генерации карточек
 function createCard(item) {
@@ -111,9 +111,19 @@ function submitFormImage(event){
 // Отправка формы Элемента Карточек
 formElementImage.addEventListener('submit', submitFormImage);
 //Добавляем все карточки на экран
-initialCards.forEach((item) => {
-  createCard(item)
-});
+// initialCards.forEach((item) => {
+//   createCard(item)
+// });
+
+const cardSection = new Section({
+  items: initialCards,
+  render: (item) =>{
+    createCard(item)
+  },
+})
+
+cardSection.renderItems()
+
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfile);
 const cardFormValidity = new FormValidator(className, formElementImage);
