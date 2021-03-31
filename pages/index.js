@@ -38,11 +38,12 @@ const popupCardName = document.querySelector('.popup__name');
 const formElementProfile = document.querySelector('.popup__form_profile');
 const formElementImage = document.querySelector('.popup__form_image');
 
-const userInfo = new UserInfo({
-  usernameSelector: '.profil__name',
-  userInfoSelector: '.profil__profession'
-});
-const handleProfileFormSubmit = ({ name, info }) => {
+const userInfo = new UserInfo(
+'.profil__name',
+'.profil__profession'
+);
+
+const handleProfileFormSubmit = ([name, info]) => {
   userInfo.setUserInfo({ name, info });
   profilePopup.close();
 };
@@ -51,9 +52,9 @@ const profilePopup = new PopupWithForm('.popup_type_add-profile', handleProfileF
 profilePopup.setEventListeners();
 
 popupOpenProfile.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  popupImageName.value= userData.name;
-  popupImageSrc.value = userData.info;
+  const data = userInfo.getUserInfo();
+  popupImageName.value= data.name;
+  popupImageSrc.value = data.info;
   profileFormValidity.resetValidation();
   profilePopup.open();
 });
@@ -82,17 +83,12 @@ function submitFormImage(event){
 // Отправка формы Элемента Карточек
 formElementImage.addEventListener('submit', submitFormImage);
 //Добавляем все карточки на экран
-// initialCards.forEach((item) => {
-//   createCard(item)
-// });
-
 const cardSection = new Section({
   items: initialCards,
   render: (item) =>{
     createCard(item)
   },
 })
-
 cardSection.renderItems()
 
 //Добавляем класс для проверки валидации полей
