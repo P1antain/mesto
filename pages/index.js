@@ -38,71 +38,25 @@ const popupCardName = document.querySelector('.popup__name');
 const formElementProfile = document.querySelector('.popup__form_profile');
 const formElementImage = document.querySelector('.popup__form_image');
 
-// Открытие Попапа
-// const openPopup = (element) =>{
-//   element.classList.add('popup_opened')
-//   document.addEventListener('keydown', closeByEscape);
-// }
+const userInfo = new UserInfo({
+  usernameSelector: '.profil__name',
+  userInfoSelector: '.profil__profession'
+});
+const handleProfileFormSubmit = ({ name, info }) => {
+  userInfo.setUserInfo({ name, info });
+  profilePopup.close();
+};
 
-// const popupEditProfile = new PopupWithForm('.popup_type_add-profile');
+const profilePopup = new PopupWithForm('.popup_type_add-profile', handleProfileFormSubmit);
+profilePopup.setEventListeners();
 
-
-// //Открытия попапа Профиля
-// const launchPopupProfile = () => {
-//   popupProfileName.value = profileName.textContent;
-//   popupProfileProfession.value = profileProfession.textContent;
-//   openPopup(popupProfile);
-// };
-// //Отправка формы редактирования Профиля
-// popupOpenProfile.addEventListener('click', launchPopupProfile);
-// // Функция  редактирования попапа Профиля
-// function submitFormProfile (event){
-//   event.preventDefault()
-//   profileName.textContent = popupProfileName.value;
-//   profileProfession.textContent = popupProfileProfession.value;
-//   closePopup(popupProfile);
-// }
-// // Изменение профиля по кнопке
-// formElementProfile.addEventListener('submit', submitFormProfile);
-//Откритие попапа Изображений
-// const launchPopupImage = () => {
-//   popupImageName.value = '';
-//   popupImageSrc.value = '';
-//   openPopup(popupImage);
-// };
-
-// // Закрытие Попапа
-// const closePopup = (element) => {
-//   element.classList.remove('popup_opened');
-//   document.removeEventListener('keydown', closeByEscape);
-// }
-// // Функция для закртыия по Escape
-// function closeByEscape(evt) {
-//   if (evt.key === 'Escape') {
-//     const openedPopup = document.querySelector('.popup_opened')
-//     closePopup(openedPopup);
-//   }
-// }
-// // Закрите поапа по событиям клика без слушателей
-// popups.forEach((popup) =>{
-//   popup.addEventListener('click', (event)=> {
-//     if(event.target.classList.contains('popup__overlay')){
-//       closePopup(popup)
-//     }
-//     if(event.target.classList.contains('popup__close')){
-//       closePopup(popup)
-//     }
-//   })
-// })
-// // Открытие Попапа:  2) Добавления карточки
-// popupOpenImage.addEventListener('click', launchPopupImage);
-
-
-
-
-
-
-
+popupOpenProfile.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  popupImageName.value= userData.name;
+  popupImageSrc.value = userData.info;
+  profileFormValidity.resetValidation();
+  profilePopup.open();
+});
 
 //Открытие попапа Изображения
 const openPopupImage = new PopupWithImage('.popup_type_add-card')
