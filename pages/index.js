@@ -1,12 +1,12 @@
-import {Card} from '../components/Card.js';
-import {FormValidator} from '../components/FormValidator.js';
-import {initialCards} from "../utils/initial-cards.js";
-import {className} from "../utils/className.js";
-import {Section} from "../components/Section.js";
-import {PopupWithImage} from "../components/PopupWithImage.js";
-import {PopupWithForm} from "../components/PopupWithForm.js";
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { initialCards } from "../utils/initial-cards.js";
+import { className } from "../utils/className.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
+import {profileName, profileInfo} from "../utils/constants.js";
 // Определяем Попапы
 const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_add-profile');
@@ -20,7 +20,7 @@ const popupOpenImage = document.querySelector('.profil__add');
 // Переменные для вз-вия с Попапом Профиля
 const popupProfileName = document.querySelector('.popup__input_type_name');
 const popupProfileProfession = document.querySelector('.popup__input_type_profession');
-const profileName = document.querySelector('.profil__name');
+// const profileName = document.querySelector('.profil__name');
 const profileProfession = document.querySelector('.profil__profession');
 
 // Перменные для вз-вия с Попапом Добавления Карточек
@@ -58,6 +58,46 @@ popupOpenProfile.addEventListener("click", () => {
   profileFormValidity.resetValidation();
   profilePopup.open();
 });
+profilePopup.setEventListeners();
+
+// Функция генерации карточек
+function createCard(data) {
+  const card = new Card(data, '.template', handleCardClick);
+  return card.generateCard()
+}
+
+// const openPopupCard = new PopupWithForm('popup_type_add-image', handleAddCard);
+// const handleAddCard = ({ name, link }) => {
+//   const cardElement = createCard({ name, link });
+//   cardSection.addItem(cardElement);
+//   openPopupCard.close();
+// };
+// popupOpenImage.addEventListener('click', () =>{
+//   cardFormValidity.enableValidation();
+//   openPopupCard.open()
+// })
+// openPopupCard.setEventListeners()
+// // // Функция добавления нового Элемента Карточек
+// function submitFormImage(event){
+//   event.preventDefault();
+//   createCard({name: popupImageName.value, link: popupImageSrc.value});
+//   popupImageName.value = '';
+//   popupImageSrc.value = '';
+//   formElementImage.reset()
+//   closePopup(popupImage)
+// }
+// // Отправка формы Элемента Карточек
+// formElementImage.addEventListener('submit', submitFormImage);
+
+//Добавляем все карточки на экран
+const cardSection = new Section({
+  items: initialCards,
+  render: (item) =>{
+   const cardElement =  createCard(item)
+    cardSection.addItem(cardElement)
+  },
+}, '.elements')
+cardSection.renderItems()
 
 //Открытие попапа Изображения
 const openPopupImage = new PopupWithImage('.popup_type_add-card')
@@ -65,31 +105,6 @@ function  handleCardClick(name, link) {
   openPopupImage.open(name, link)
 }
 openPopupImage.setEventListeners()
-// Функция генерации карточек
-function createCard(item) {
-  const card = new Card(item, '.template', handleCardClick);
-  const cardElement = card.generateCard();
-  elementCard.prepend(cardElement);
-}
-// // Функция добавления нового Элемента Карточек
-function submitFormImage(event){
-  event.preventDefault();
-  createCard({name: popupImageName.value, link: popupImageSrc.value});
-  popupImageName.value = '';
-  popupImageSrc.value = '';
-  formElementImage.reset()
-  closePopup(popupImage)
-}
-// Отправка формы Элемента Карточек
-formElementImage.addEventListener('submit', submitFormImage);
-//Добавляем все карточки на экран
-const cardSection = new Section({
-  items: initialCards,
-  render: (item) =>{
-    createCard(item)
-  },
-})
-cardSection.renderItems()
 
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfile);
