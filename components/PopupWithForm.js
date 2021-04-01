@@ -21,7 +21,6 @@ export class PopupWithForm extends Popup {
             this.close()
 
         })
-        console.log(this._handleFormSubmit)
     }
 
     close() {

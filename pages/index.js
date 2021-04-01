@@ -6,42 +6,13 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import {profileName, profileInfo, sectionProfile} from "../utils/constants.js";
-// Определяем Попапы
-const popups = document.querySelectorAll('.popup');
-const popupProfile = document.querySelector('.popup_type_add-profile');
-const popupImage = document.querySelector('.popup_type_add-image');
-const popupCard = document.querySelector('.popup_type_add-card');
-
-// Переменные через которые открываются попапы
-const popupOpenProfile = document.querySelector('.profil__edit');
-const popupOpenImage = document.querySelector('.profil__add');
-
-// Переменные для вз-вия с Попапом Профиля
-const inputProfileName = document.querySelector('.popup__input_type_name');
-const inputProfileInfo = document.querySelector('.popup__input_type_profession');
-// const profileName = document.querySelector('.profil__name');
-const profileProfession = document.querySelector('.profil__profession');
-
-// Перменные для вз-вия с Попапом Добавления Карточек
-const popupImageName = document.querySelector('.popup__input_type_image');
-const popupImageSrc = document.querySelector('.popup__input_type_src');
-
-// Переменные для вз-вия с Добавлением карточек
-const elementCard = document.querySelector('.elements');
-
-// Переменные для вз-вия с Попапом Карточек 
-const popupCardImg = document.querySelector('.popup__image');
-const popupCardName = document.querySelector('.popup__name');
-
-// Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
-const formElementProfile = document.querySelector('.popup__form_profile');
-const formElementImage = document.querySelector('.popup__form_image');
-
+import {popupOpenProfile, inputProfileName,
+        inputProfileInfo, popupOpenImage,
+        formElementProfile, formElementImage} from "../utils/constants.js";
 
 // Функция генерации карточек
-function createCard(item) {
-  const card = new Card(item, '.template', handleCardClick);
+function createCard(data) {
+  const card = new Card(data, '.template', handleCardClick);
   // return card.generateCard()
     const cardElement =  card.generateCard()
     cardSection.addItem(cardElement)
@@ -50,68 +21,45 @@ function createCard(item) {
 //Добавляем все карточки на экран
 const cardSection = new Section({
   items: initialCards,
-  render: (item) =>{
-      createCard(item)
+  render: (data) =>{
+      createCard(data)
   },
 }, '.elements')
 cardSection.renderItems()
 
 const userInfo = new UserInfo('.profile__name', '.profile__profession')
-
+//Добавляем вз-вие с попапом Профиля
 const formProfileEdit = new PopupWithForm({
     handleFormSubmit: (data) => {
         userInfo.setUserInfo(data);
     }
 }, '.popup_type_add-profile');
-
+// Открываем попап Профиля
 popupOpenProfile.addEventListener('click', ()=>{
     formProfileEdit.open()
     getUserInfoForm()
     profileFormValidity.enableValidation()
 })
-
+//Функция добавления текста Профиля
 function getUserInfoForm() {
-    const info = userInfo.getUserInfo()
-    inputProfileName.value = info.name
-    inputProfileInfo.value = info.info
+    const profileInfo = userInfo.getUserInfo()
+    inputProfileName.value = profileInfo.inputProfileName
+    inputProfileInfo.value = profileInfo.inputProfileInfo
 }
 
-
-
-
-
-
-
-
-
-
-
-
+//Добавляем вз-вие с попапом Карточек
 const formAddPlace = new PopupWithForm({
-    handleFormSubmit: (formData) => {
-        createCard(formData)
+    handleFormSubmit: (data) => {
+        createCard(data)
     }
 }, '.popup_type_add-image');
 
-//открытие формы добавления карточки с местом
+//Форма добавление Карточки
 popupOpenImage.addEventListener('click', () => {
     formAddPlace.open();
     formElementImage.reset();
-
+    profileFormValidity.enableValidation()
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Открытие попапа Изображения
 const openPopupImage = new PopupWithImage('.popup_type_add-card')
