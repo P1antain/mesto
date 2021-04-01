@@ -1,2 +1,5 @@
 export const profileName = '.profil__name'
 export const profileInfo = '.profil__profession'
+export const sectionProfile = '.popup_type_add-profile'
+// export const inputProfileName = '.popup__input_type_name'
+// export const inputProfileInfo = '.popup__input_type_profession'
