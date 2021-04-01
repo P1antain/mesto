@@ -12,5 +12,7 @@ __Цель работы__
 2. Css (Flex/Grid/Позиционирование)
 3. JavaScript (Add/remove classlist/ Popup)
 4. Использование template элементов, добавление и вз-вие с ними. 
+5. OOП и все что с ними связано
+6. WebPack и его модули компиляции.
 ____
-### ссылка на проект : __https://p1antain.github.io/mesto/index.html__
+### запуск проекта : __npm run dev__
