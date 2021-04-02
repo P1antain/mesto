@@ -9,13 +9,12 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 /* Profil */
-
 @import url(../blocks/profil/profil.css);
 @import url(../blocks/profil/__avatar/profil__avatar.css);
 @import url(../blocks/profil/__info/profil__info.css);
-@import url(../blocks/profil/__name/profile__name.css);
+@import url(../blocks/profil/__name/profil__name.css);
 @import url(../blocks/profil/__edit/profil__edit.css);
-@import url(../blocks/profil/__profession/profile__profession.css);
+@import url(../blocks/profil/__profession/profil__profession.css);
 @import url(../blocks/profil/__add/profil__add.css);
 /* Element(s) */
 @import url(../blocks/elements/elements.css);

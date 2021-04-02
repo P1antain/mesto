@@ -26,7 +26,7 @@ const cardSection = new Section({
 }, '.elements')
 
 
-const userInfo = new UserInfo('.profile__name', '.profile__profession')
+const userInfo = new UserInfo('.profil__name', '.profil__profession')
 //Добавляем вз-вие с попапом Профиля
 const formProfileEdit = new PopupWithForm({
     handleFormSubmit: (data) => {
