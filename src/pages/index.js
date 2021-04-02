@@ -11,21 +11,20 @@ import {popupOpenProfile, inputProfileName,
         initialCards, className} from "../utils/constants.js";
 
 // Функция генерации карточек
-function createCard(data) {
-  const card = new Card(data, '.template', handleCardClick);
-  // return card.generateCard()
-    const cardElement =  card.generateCard()
-    cardSection.addItem(cardElement)
+function createCard(item) {
+  const card = new Card(item, '.template', handleCardClick);
+  const cardElement =  card.generateCard()
+  cardSection.addItem(cardElement)
 }
 
 //Добавляем все карточки на экран
 const cardSection = new Section({
   items: initialCards,
-  render: (data) =>{
-      createCard(data)
-  },
+    render(item) {
+        createCard(item)
+    },
 }, '.elements')
-cardSection.renderItems()
+
 
 const userInfo = new UserInfo('.profile__name', '.profile__profession')
 //Добавляем вз-вие с попапом Профиля
@@ -49,8 +48,11 @@ function getUserInfoForm() {
 
 //Добавляем вз-вие с попапом Карточек
 const formAddPlace = new PopupWithForm({
-    handleFormSubmit: (data) => {
-        createCard(data)
+    handleFormSubmit: (formData) => {
+        createCard({
+            'name': formData.editImageName,
+            'link':formData.editImageSrc
+        })
     }
 }, '.popup_type_add-image');
 
@@ -67,6 +69,7 @@ function  handleCardClick(name, link) {
     openPopupImage.open(name, link)
 }
 // Запускаем
+cardSection.renderItems()
 formProfileEdit.setEventListeners()
 formAddPlace.setEventListeners()
 openPopupImage.setEventListeners()
