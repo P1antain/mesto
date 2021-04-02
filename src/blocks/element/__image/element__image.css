@@ -1,9 +1,7 @@
 .element__image{
-    max-width: 282px;
-    max-height: 282px;
+    width: 282px;
+    height: 282px;
     border-radius: 10px 10px 0 0;
-    height: max-content;
-    width: max-content;
     transition: 0.5s linear;
 }
 

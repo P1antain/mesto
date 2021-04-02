@@ -45,3 +45,5 @@ export const inputProfileInfo = document.querySelector('.popup__input_type_profe
 // Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
 export const formElementProfile = document.querySelector('.popup__form_profile');
 export const formElementImage = document.querySelector('.popup__form_image');
+//Константа для Попапа
+export const escape = 'Escape'

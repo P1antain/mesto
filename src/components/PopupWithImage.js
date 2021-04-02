@@ -15,6 +15,7 @@ export class PopupWithImage extends Popup {
         // cardTitle.textContent = title;
         this._title.textContent = name;
         this._image.src = link;
+        this._image.alt = link;
         super.open()
     }
 }

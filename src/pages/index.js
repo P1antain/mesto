@@ -37,7 +37,6 @@ const formProfileEdit = new PopupWithForm({
 popupOpenProfile.addEventListener('click', ()=>{
     formProfileEdit.open()
     getUserInfoForm()
-    profileFormValidity.enableValidation()
 })
 //Функция добавления текста Профиля
 function getUserInfoForm() {
@@ -60,7 +59,6 @@ const formAddCard = new PopupWithForm({
 popupOpenImage.addEventListener('click', () => {
     formAddCard.open();
     formElementImage.reset();
-    profileFormValidity.enableValidation()
 })
 
 //Открытие попапа Изображения
