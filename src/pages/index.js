@@ -47,7 +47,7 @@ function getUserInfoForm() {
 }
 
 //Добавляем вз-вие с попапом Карточек
-const formAddPlace = new PopupWithForm({
+const formAddCard = new PopupWithForm({
     handleFormSubmit: (formData) => {
         createCard({
             'name': formData.editImageName,
@@ -58,7 +58,7 @@ const formAddPlace = new PopupWithForm({
 
 //Форма добавление Карточки
 popupOpenImage.addEventListener('click', () => {
-    formAddPlace.open();
+    formAddCard.open();
     formElementImage.reset();
     profileFormValidity.enableValidation()
 })
@@ -71,7 +71,7 @@ function  handleCardClick(name, link) {
 // Запускаем
 cardSection.renderItems()
 formProfileEdit.setEventListeners()
-formAddPlace.setEventListeners()
+formAddCard.setEventListeners()
 openPopupImage.setEventListeners()
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfile);
