@@ -47,3 +47,5 @@ export const formElementProfile = document.querySelector('.popup__form_profile')
 export const formElementImage = document.querySelector('.popup__form_image');
 //Константа для Попапа
 export const escape = 'Escape'
+//Id
+export const id = {myId: ''};

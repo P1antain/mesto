@@ -12,7 +12,10 @@
 
 <main class="content">
     <section class="profil">
-        <img src="<%=require('./image/jack.jpg')%>" alt="Аватар" class="profil__avatar">
+        <div class="profil__place_avatar">
+            <img src="<%=require('./image/jack.jpg')%>" alt="Аватар" class="profil__avatar">
+            <button class="profil__replace"></button>
+        </div>
         <div class="profil__info">
             <h1 class="profil__name">Жак-Ив Кусто</h1>
             <button class="profil__edit" aria-label="Редактирование профиля" type="button"></button>
@@ -70,6 +73,20 @@
     </div>
 </div>
 
+<div class="popup popup_type_add-avatar">
+    <div class="popup__overlay popup__overlay_avatar">
+        <form class="popup__form popup__form_avatar" name="editAvatar" action="" novalidate>
+            <button class="popup__close popup__close_avatar" aria-label="Закрыть" type="reset"></button>
+            <h3 class="popup__edit popup__edit_theme-avatar">Обновить аватар</h3>
+            <section class="popup__section">
+                <input class="popup__input popup__input_type_avatar" type="url" placeholder="Ссылка на картинку" value="" name='editAvatar' required>
+                <span class="popup__input-error"></span>
+            </section>
+            <button class="popup__save" type="submit">Создать</button>
+        </form>
+    </div>
+</div>
+
 <footer class="footer">
     <p class="footer__author">&copy; 2021 Mesto Russia</p>
 </footer>
@@ -79,7 +96,9 @@
         <img src="#" alt="" class="element__image">
         <div class="element__container">
             <h2 class="element__name"></h2>
-            <button class="element__like" aria-label="Поставить лайк" type="button"></button>
+            <button class="element__like" aria-label="Поставить лайк" type="button">
+                <span class="element__counter">2</span>
+            </button>
         </div>
         <button class="element__delete" type="button"></button>
     </div>

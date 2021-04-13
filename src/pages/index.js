@@ -5,14 +5,21 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import {Api} from "../components/Api.js";
 import {popupOpenProfile, inputProfileName,
         inputProfileInfo, popupOpenImage,
         formElementProfile, formElementImage,
-        initialCards, className} from "../utils/constants.js";
+        initialCards, className, id} from "../utils/constants.js";
 
+const userInfo = new UserInfo('.profil__name', '.profil__profession')
+// Апи данные
+let api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-22',
+    authorization: 'c64c7158-2414-4469-9e6c-496f1ef4fdaa'
+})
 // Функция генерации карточек
 function createCard(item) {
-  const card = new Card(item, '.template', handleCardClick);
+  const card = new Card(item, '.template', handleCardClick, id.myId);
   const cardElement =  card.generateCard()
   cardSection.addItem(cardElement)
 }
@@ -25,8 +32,17 @@ const cardSection = new Section({
     },
 }, '.elements')
 
+api.getData()
+    .then((data)=> {
+        let [userData, cardsData] = data;
+        id.myId = userData._id;
+        userInfo.setUserInfo(userData)
+        cardSection.renderItems(cardsData)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 
-const userInfo = new UserInfo('.profil__name', '.profil__profession')
 //Добавляем вз-вие с попапом Профиля
 const formProfileEdit = new PopupWithForm({
     handleFormSubmit: (data) => {
@@ -77,3 +93,7 @@ const cardFormValidity = new FormValidator(className, formElementImage);
 //Запускаем так или через фукнции
 cardFormValidity.enableValidation()
 profileFormValidity.enableValidation()
+
+
+
+console.log(api.getCard())
