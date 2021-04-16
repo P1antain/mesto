@@ -1,30 +1,3 @@
-// Карточки
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 //Классы валидации
 export const className = {
     formSelector: '.popup__form',
@@ -39,13 +12,36 @@ export const className = {
 // Переменные через которые открываются попапы
 export const popupOpenProfile = document.querySelector('.profil__edit');
 export const popupOpenImage = document.querySelector('.profil__add');
+export const popupOpenAvatar = document.querySelector('.profil__replace')
 // Переменные для вз-вия с Попапом Профиля
 export const inputProfileName = document.querySelector('.popup__input_type_name');
 export const inputProfileInfo = document.querySelector('.popup__input_type_profession');
 // Форма для отправки Поапа: 1)Профиля; 2)Добавления Карточки;
 export const formElementProfile = document.querySelector('.popup__form_profile');
 export const formElementImage = document.querySelector('.popup__form_image');
+export const formElementAvatar = document.querySelector('.popup__form_avatar')
 //Константа для Попапа
 export const escape = 'Escape'
-//Id
-export const id = {myId: ''};
+// Изображение Аватара
+export const editAvatar = document.querySelector('.profil__avatar')
+export const buttonLoaderImage = document.querySelector('.popup__save_add-image')
+export const buttonLoaderProfile = document.querySelector('.popup__save_add-profile')
+export const buttonLoaderAvatar = document.querySelector('.popup__save_add-avatar')
+
+
+
+
+export const submitButtonsTexts = {
+    initial: {
+        'editAvatar': 'Сохранить',
+        'editImage': 'Добавить',
+        'editProfile': 'Сохранить',
+        'deleteCard': 'Да',
+    },
+    changed: {
+        'editAvatar': 'Сохранение...',
+        'editImage': 'Добавление...',
+        'editProfile': 'Сохранение...',
+        'deleteCard': 'Удаление...',
+    }
+}
