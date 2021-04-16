@@ -23,15 +23,7 @@ export const formElementAvatar = document.querySelector('.popup__form_avatar')
 //Константа для Попапа
 export const escape = 'Escape'
 // Изображение Аватара
-export const editAvatar = document.querySelector('.profil__avatar')
-export const buttonLoaderImage = document.querySelector('.popup__save_add-image')
-export const buttonLoaderProfile = document.querySelector('.popup__save_add-profile')
-export const buttonLoaderAvatar = document.querySelector('.popup__save_add-avatar')
-
-
-
-
-export const submitButtonsTexts = {
+export const submitButtons = {
     initial: {
         'editAvatar': 'Сохранить',
         'editImage': 'Добавить',

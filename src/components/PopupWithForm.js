@@ -1,8 +1,8 @@
 import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
-    constructor ({ popupSelector, submitButtonsTexts, handleFormSubmit }) {
+    constructor ({popupSelector, submitButtons, handleFormSubmit}) {
         super(popupSelector);
-        this._submitButtonsTexts = submitButtonsTexts;
+        this._submitButtons = submitButtons;
         this._handleFormSubmit = handleFormSubmit;
         this._popupForm = this._popup.querySelector('.popup__form');
         this._inputList = this._popupForm.querySelectorAll('.popup__input');
@@ -17,12 +17,12 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    _setPopupSubmitTextToInitialState() {
-        this._submitButton.textContent = this._submitButtonsTexts.initial[`${this._submitText}`];
+    _buttonName() {
+        this._submitButton.textContent = this._submitButtons.initial[`${this._submitText}`];
     }
 
-    changeStatusOfSubmitButton() {
-        this._submitButton.textContent = this._submitButtonsTexts.changed[`${this._submitText}`];
+    renameButtonName() {
+        this._submitButton.textContent = this._submitButtons.changed[`${this._submitText}`];
     }
 
     _submitForm(evt){
@@ -37,11 +37,11 @@ export default class PopupWithForm extends Popup {
 
     openPopup() {
         super.open();
-        this._setPopupSubmitTextToInitialState();
+        this._buttonName();
     }
 
     closePopup() {
-        super.closePopup();
+        super.close();
         this._popupForm.reset();
     }
 }

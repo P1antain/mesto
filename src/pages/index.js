@@ -1,5 +1,5 @@
 import './index.css';
-import Card from '../components/Card.js';
+import { Card } from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -9,7 +9,7 @@ import Api from "../components/Api.js";
 import {popupOpenProfile, inputProfileName,
         inputProfileInfo, popupOpenImage,
         formElementProfile, formElementImage,
-        submitButtonsTexts, className, popupOpenAvatar, formElementAvatar} from "../utils/constants.js";
+        submitButtons, className, popupOpenAvatar, formElementAvatar} from "../utils/constants.js";
 
 //Добавляем класс для проверки валидации полей
 const profileFormValidity = new FormValidator(className, formElementProfile);
@@ -28,7 +28,6 @@ const userInfo = new UserInfo(
     }
 )
 
-// Апи данные
 let api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-22',
     token: 'c64c7158-2414-4469-9e6c-496f1ef4fdaa'
@@ -44,6 +43,7 @@ function createCard(item, templateSelector) {
 
         {
             handleRemoveClick: () => {
+                popupRemove.openPopup();
                 cardToRemove = newCard;
             },
             handleCardLike: () => {
@@ -72,20 +72,15 @@ const cardSection = new Section({
     }
 },'.elements');
 
-//Работа с АPI получения данных пользователя и карточек с сервера
-const promiseGetUser = api.getUserInfo()
-const promiseGetCards = api.getInitialCards()
 
-Promise.all([promiseGetUser, promiseGetCards])
-    .then((arrayOfObjectsUserAndCards) => {
-        userInfo.setUserInfo(arrayOfObjectsUserAndCards[0]);
-        cardSection.renderItems(arrayOfObjectsUserAndCards[1]);
-    })
+api.getInitialData()
+    .then(data => {
+        const [promiseGetUser, promiseGetCards] = data;
+        userInfo.setUserInfo(promiseGetCards);
+        cardSection.renderItems(promiseGetUser);
+        })
     .catch((err) => console.log(err));
-// Работа с экземплярами классов Popup редактирования профиля//
-// Popup заполнения карточки, Popup удаления карточки, Popup редактирования Аватара пользователя
-//
-// Функция проверки есть ли изображение по введенному адресу
+
 function checkImage(link) {
   return new Promise((resolve,reject) => {
     const img = document.createElement('img');
@@ -95,48 +90,46 @@ function checkImage(link) {
   })
 }
 
-//Работа с API добавления карточки и создание попапа добавления карточки
 function addCardApi(formValues) {
     api.addCard({name:formValues.title, link:formValues.link})
         .then((newCard)=> {
             const generatedCard = createCard(newCard, '.template');
             cardSection.setItem(generatedCard);
-            popupCard.close();
+            popupCard.closePopup();
         })
         .catch((err) => console.log(err));
 }
 
 const popupCard = new PopupWithForm({
     popupSelector: '.popup_type_add-image',
-    submitButtonsTexts,
+    submitButtons,
     handleFormSubmit: (formValues) => {
         checkImage(formValues.link)
             .then(()=> {
-                popupCard.changeStatusOfSubmitButton();
+                popupCard.renameButtonName();
                 addCardApi(formValues);
             })
             .catch(() => console.log('Ошибка адреса'));
     },
 });
 
-//Работа с API смены Аватара пользователя и создание попапа смены аватара пользователя
-function changeAvatarApi(formValues) {
+function getAvatar(formValues) {
     api.updateAvatar(formValues.link)
-        .then((UserInfoObject) => {
-            userInfo.setUserInfo(UserInfoObject);
-            popupAvatar.close();
+        .then((getData) => {
+            userInfo.setUserInfo(getData);
+            popupAvatar.closePopup();
         })
         .catch((err) => console.log(err));
 }
 
 const popupAvatar = new PopupWithForm({
     popupSelector: '.popup_type_add-avatar',
-    submitButtonsTexts,
+    submitButtons,
     handleFormSubmit: (formValues) => {
         checkImage(formValues.link)
             .then(()=> {
-                popupAvatar.changeStatusOfSubmitButton();
-                changeAvatarApi(formValues);
+                popupAvatar.renameButtonName();
+                getAvatar(formValues);
             })
             .catch(() => console.log('Ошибка адреса'));
     },
@@ -145,13 +138,13 @@ const popupAvatar = new PopupWithForm({
 
 const popupProfile = new PopupWithForm({
     popupSelector: '.popup_type_add-profile',
-    submitButtonsTexts,
+    submitButtons,
     handleFormSubmit: (formValues) => {
-        popupProfile.changeStatusOfSubmitButton();
+        popupProfile.renameButtonName();
         api.setUserInfo(formValues)
             .then((updatedUser) => {
                 userInfo.setUserInfo(updatedUser);
-                popupProfile.close();
+                popupProfile.closePopup();
             })
             .catch((err) => console.log(err));
     },
@@ -159,9 +152,9 @@ const popupProfile = new PopupWithForm({
 
 const popupRemove = new PopupWithForm({
     popupSelector: '.popup_type_delete',
-    submitButtonsTexts,
+    submitButtons,
     handleFormSubmit: () => {
-        popupRemove.changeStatusOfSubmitButton();
+        popupRemove.renameButtonName();
         api.deleteCard(cardToRemove)
             .then(() => {
                 cardToRemove.removeCard();
@@ -185,6 +178,7 @@ function setPopupProfileInputs() {
 
 function handleEditAvatar() {
   popupAvatar.openPopup();
+  formElementAvatar.reset()
 }
 
 function handleEditProfile() {
@@ -195,6 +189,7 @@ function handleEditProfile() {
 
 function handleAddCard() {
   popupCard.openPopup();
+  formElementImage.reset()
 }
 
 popupOpenAvatar.addEventListener('click', handleEditAvatar);
