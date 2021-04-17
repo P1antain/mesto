@@ -17,7 +17,7 @@ export default class PopupWithForm extends Popup {
         return this._formValues;
     }
 
-    _buttonName() {
+    _setButtonName() {
         this._submitButton.textContent = this._submitButtons.initial[`${this._submitText}`];
     }
 
@@ -37,7 +37,7 @@ export default class PopupWithForm extends Popup {
 
     openPopup() {
         super.open();
-        this._buttonName();
+        this._setButtonName();
     }
 
     closePopup() {

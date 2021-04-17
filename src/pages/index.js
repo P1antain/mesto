@@ -28,7 +28,7 @@ const userInfo = new UserInfo(
     }
 )
 
-let api = new Api({
+const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-22',
     token: 'c64c7158-2414-4469-9e6c-496f1ef4fdaa'
 })
@@ -178,7 +178,7 @@ function setPopupProfileInputs() {
 
 function handleEditAvatar() {
   popupAvatar.openPopup();
-  formElementAvatar.reset()
+  // formElementAvatar.reset()
 }
 
 function handleEditProfile() {
@@ -189,7 +189,8 @@ function handleEditProfile() {
 
 function handleAddCard() {
   popupCard.openPopup();
-  formElementImage.reset()
+  // formElementImage.reset()
+
 }
 
 popupOpenAvatar.addEventListener('click', handleEditAvatar);
