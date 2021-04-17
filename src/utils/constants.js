@@ -6,7 +6,8 @@ export const className = {
     inactiveButtonClass: 'popup__save_disable',
     inputErrorClass: '.popup__input-error',
     errorClass: 'popup__input-error_active',
-    popupSection: '.popup__section'
+    popupSection: '.popup__section',
+    inputLine: 'popup__input-active'
 };
 
 // Переменные через которые открываются попапы

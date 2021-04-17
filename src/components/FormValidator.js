@@ -7,6 +7,7 @@
          this._inputErrorClass = config.inputErrorClass;
          this._errorClass = config.errorClass;
          this._popupSection = config.popupSection;
+         this._inputLine = config.inputLine;
      }
 
      _showInputError(inputElement, errorMessage) {
@@ -15,6 +16,7 @@
              .querySelector(this._inputErrorClass);
          this._errorElement.textContent = errorMessage;
          this._errorElement.classList.add(this._errorClass)
+         inputElement.classList.add(this._inputLine)
      }
 
      _hideInputError(inputElement) {
@@ -23,6 +25,7 @@
              .querySelector(this._inputErrorClass);
          this._errorElement.textContent = '';
          this._errorElement.classList.remove(this._errorClass)
+         inputElement.classList.remove(this._inputLine)
      }
 
      _isValid(inputElement) {
@@ -74,7 +77,6 @@
 
      enableValidation() {
          this._setEventListener();
-
      }
 
  }
