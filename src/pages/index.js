@@ -15,7 +15,7 @@ import {popupOpenProfile, inputProfileName,
 const profileFormValidity = new FormValidator(className, formElementProfile);
 const cardFormValidity = new FormValidator(className, formElementImage);
 const avatarFormValidity = new FormValidator(className, formElementAvatar)
-//Запускаем так или через фукнции
+//Запускаем так или через функции
 cardFormValidity.enableValidation()
 profileFormValidity.enableValidation()
 avatarFormValidity.enableValidation()
@@ -178,7 +178,6 @@ function setPopupProfileInputs() {
 
 function handleEditAvatar() {
   popupAvatar.openPopup();
-  // formElementAvatar.reset()
 }
 
 function handleEditProfile() {
@@ -189,8 +188,6 @@ function handleEditProfile() {
 
 function handleAddCard() {
   popupCard.openPopup();
-  // formElementImage.reset()
-
 }
 
 popupOpenAvatar.addEventListener('click', handleEditAvatar);
