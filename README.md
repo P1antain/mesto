@@ -11,11 +11,16 @@ ______
 
 Если все установленно смотрим **Запуск**
 
-## Установка 
+## Установка (Windows OS)
 1) [Node.js](https://nodejs.org/en/)
 2) [Git Bash](https://gitforwindows.org/index.html)
 
-
+## Запуск проекта
+1) С помощью  Git Bush выполняем команду
+`git clone https://github.com/P1antain/mesto.git`
+2) Открываем работу, в проектной среде выполняем команду
+`git install`
+3)
 
 
 
