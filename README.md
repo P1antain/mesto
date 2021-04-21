@@ -1,3 +1,5 @@
+ <img src="https://res.cloudinary.com/P1antain/image/upload/v1586434550/logo_bdsdvx.svg" width="400">
+
 # Проектная работа 4 
 ## Место.Россия 
 ______
