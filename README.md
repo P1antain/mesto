@@ -1,4 +1,7 @@
-![logo](src/image/logo.svg) 
+<p align="center">
+![logo](https://acegif.com/wp-content/uploads/cat-typing-2.gif) 
+</p>
+# Проект Mesto
 ## Что же за Mesto?
 >Mesto - это интерактивная страница, где люди делятся фотографиями их любимых мест. А также оценивают фотографии других пользователей.
 ______
